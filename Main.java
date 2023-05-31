@@ -55,7 +55,7 @@ public class Main {
             setMes(data, mes);
 
             if(data.after(dataContratacao))
-                answer += funcionario.getSalarioMesEspecifico(mes, ano);
+                answer += funcionario.getSalario(mes, ano);
         }
 
         return answer;
@@ -74,7 +74,7 @@ public class Main {
             setMes(data, mes);
 
             if(data.after(dataContratacao))
-                answer += (funcionario.getSalarioSemBeneficio());
+                answer += (funcionario.getSalarioSemBeneficio(mes, ano));
         }
 
         return answer;
@@ -94,11 +94,9 @@ public class Main {
             setMes(data, mes);
 
             if(data.after(dataContratacao)) {
-                double salarioBeneficio = funcionario.getSalarioMesEspecifico(mes, ano);
+                double salarioBeneficio = funcionario.getSalario(mes, ano);
 
-                
-
-                double salarioSemBeneficio = funcionario.getSalarioSemBeneficio();
+                double salarioSemBeneficio = funcionario.getSalarioSemBeneficio(mes, ano);
                 
                 answer += (salarioBeneficio - salarioSemBeneficio);
             }
@@ -121,7 +119,7 @@ public class Main {
             setMes(data, mes);
 
             if(data.after(dataContratacao)) {
-                double salario = funcionario.getSalarioMesEspecifico(mes, ano);
+                double salario = funcionario.getSalario(mes, ano);
 
                 if(salario > max) {
                     max = salario;
@@ -146,8 +144,8 @@ public class Main {
             setMes(data, mes);
 
             if(data.after(dataContratacao)) {
-                double salarioComBeneficio = funcionario.getSalarioMesEspecifico(mes, ano);
-                double salarioSemBeneficio = funcionario.getSalarioSemBeneficio();
+                double salarioComBeneficio = funcionario.getSalario(mes, ano);
+                double salarioSemBeneficio = funcionario.getSalarioSemBeneficio(mes, ano);
 
                 double salario = salarioComBeneficio - salarioSemBeneficio;
 
@@ -169,7 +167,6 @@ public class Main {
             Vendedor cargo = (Vendedor) vendedor.getCargo();
 
             double valorVendido = cargo.getValorVendidoMes(mes, ano);
-            System.out.println(valorVendido);
 
             if(valorVendido > max) {
                 max = valorVendido;
@@ -305,11 +302,11 @@ public class Main {
 			System.out.println("Escolha a opção de teste:");
 			System.out.println("1 - Soma de todos os salarios completos em um mês");
 			System.out.println("2 - Soma de todos os salarios sem os beneficios em um mês");
-			System.out.println("3 - Soma de somento que foi gasto em beneficios em um mês");
+			System.out.println("3 - Soma de somente o que foi gasto em beneficios em um mês");
 			System.out.println("4 - Funcionario que recebeu o maior salario em um determinado mês");
 			System.out.println("5 - Funcionario que recebeu mais beneficio em um determinado mês");
 			System.out.println("6 - Vendedor que mais vendeu em um determinado mes");
-			System.out.println("(Qualque outro numero) - Sair");
+			System.out.println("(Qualquer outro numero) - Sair");
 			System.out.println("Digite o numero");
 
 			op = input.nextInt();
@@ -340,7 +337,7 @@ public class Main {
                     input.nextLine();
 
                     double valorSemBeneficios = totalPagoSemBeneficio(listaCompleta, mes, ano);
-                    System.out.printf("O valor da soma de todos os salarios sem os bonus na data %d/%d é: R$ %.2f \n ", mes, ano, valorSemBeneficios);
+                    System.out.printf("O valor da soma de todos os salarios sem os beneficios na data %d/%d é: R$ %.2f \n ", mes, ano, valorSemBeneficios);
 
                     break;
                 case 3:
@@ -368,7 +365,7 @@ public class Main {
                     input.nextLine();
 
                     Funcionario ganhaMais = funcionarioRecebeuMais(listaCompleta, mes, ano);
-                    System.out.printf("Na data %d/%d quem mais recebeu foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, ganhaMais.getNome(), ganhaMais.getSalarioMesEspecifico(mes, ano));
+                    System.out.printf("Na data %d/%d quem mais recebeu foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, ganhaMais.getNome(), ganhaMais.getSalario(mes, ano));
 
                     break;
                 case 5:
@@ -382,7 +379,7 @@ public class Main {
                     input.nextLine();
 
                     Funcionario maisBeneficio = funcionarioRecebeuMaisBeneficio(listaBeneficios, mes, ano);
-                    System.out.printf("Na data %d/%d quem recebeu o maior bonus foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, maisBeneficio.getNome(), maisBeneficio.getSalarioMesEspecifico(mes, ano) - maisBeneficio.getSalarioSemBeneficio());
+                    System.out.printf("Na data %d/%d quem recebeu o maior bonus foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, maisBeneficio.getNome(), maisBeneficio.getSalario(mes, ano) - maisBeneficio.getSalarioSemBeneficio(mes, ano));
 
                     break;
                 case 6:
@@ -396,10 +393,16 @@ public class Main {
                     input.nextLine();
 
                     Funcionario maisVendeu = vendedorMaiorVenda(listaVendedores, mes, ano);
-                    Vendedor cargo = (Vendedor) maisVendeu.getCargo();
 
-                    double valorVendido = cargo.getValorVendidoMes(mes, ano);
-                    System.out.printf("Na data %d/%d quem mais vendeu foi o(a) %s. O valor vendido foi: R$ %.2f \n", mes, ano, maisVendeu.getNome(), valorVendido);
+                    if(maisVendeu != null) {
+                        Vendedor cargo = (Vendedor) maisVendeu.getCargo();
+
+                        double valorVendido = cargo.getValorVendidoMes(mes, ano);
+                        System.out.printf("Na data %d/%d quem mais vendeu foi o(a) %s. O valor vendido foi: R$ %.2f \n", mes, ano, maisVendeu.getNome(), valorVendido);
+                    }
+                    else {
+                        System.out.println("Nenhum vendedor da lista vendeu na data informada");
+                    }
 
                     break;
                 default:
