@@ -166,7 +166,6 @@ public class Main {
             Vendedor cargo = (Vendedor) vendedor.getCargo();
 
             double valorVendido = cargo.getValorVendidoMes(mes, ano);
-            System.out.println("valor:  " + valorVendido);
 
             if(valorVendido > max) {
                 max = valorVendido;
