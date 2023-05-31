@@ -169,6 +169,7 @@ public class Main {
             Vendedor cargo = (Vendedor) vendedor.getCargo();
 
             double valorVendido = cargo.getValorVendidoMes(mes, ano);
+            System.out.println(valorVendido);
 
             if(valorVendido > max) {
                 max = valorVendido;
@@ -182,28 +183,34 @@ public class Main {
     public static void main(String[] args) {
         //Criar datas
         Calendar dataJorge = Calendar.getInstance();
+        dataJorge.set(Calendar.DAY_OF_MONTH, 1);
         dataJorge.set(Calendar.MONTH, Calendar.JANUARY);
         dataJorge.set(Calendar.YEAR, 2018);
 
         Calendar dataMaria = Calendar.getInstance();
-        dataJorge.set(Calendar.MONTH, Calendar.DECEMBER);
-        dataJorge.set(Calendar.YEAR, 2015);
+        dataMaria.set(Calendar.DAY_OF_MONTH, 1);
+        dataMaria.set(Calendar.MONTH, Calendar.DECEMBER);
+        dataMaria.set(Calendar.YEAR, 2015);
 
         Calendar dataAna = Calendar.getInstance();
-        dataJorge.set(Calendar.MONTH, Calendar.DECEMBER);
-        dataJorge.set(Calendar.YEAR, 2021);
+        dataAna.set(Calendar.DAY_OF_MONTH, 1);
+        dataAna.set(Calendar.MONTH, Calendar.DECEMBER);
+        dataAna.set(Calendar.YEAR, 2021);
 
         Calendar dataJoao = Calendar.getInstance();
-        dataJorge.set(Calendar.MONTH, Calendar.DECEMBER);
-        dataJorge.set(Calendar.YEAR, 2021);
+        dataJoao.set(Calendar.DAY_OF_MONTH, 1);
+        dataJoao.set(Calendar.MONTH, Calendar.DECEMBER);
+        dataJoao.set(Calendar.YEAR, 2021);
 
         Calendar dataJuliana = Calendar.getInstance();
-        dataJorge.set(Calendar.MONTH, Calendar.JULY);
-        dataJorge.set(Calendar.YEAR, 2017);
+        dataJuliana.set(Calendar.DAY_OF_MONTH, 1);
+        dataJuliana.set(Calendar.MONTH, Calendar.JULY);
+        dataJuliana.set(Calendar.YEAR, 2017);
 
         Calendar dataBento = Calendar.getInstance();
-        dataJorge.set(Calendar.MONTH, Calendar.MARCH);
-        dataJorge.set(Calendar.YEAR, 2014);
+        dataBento.set(Calendar.DAY_OF_MONTH, 1);
+        dataBento.set(Calendar.MONTH, Calendar.MARCH);
+        dataBento.set(Calendar.YEAR, 2014);
 
 
         // Criar os funcionarios
@@ -215,24 +222,79 @@ public class Main {
 		Funcionario bentoAlbino = new Funcionario("Bento Albino", new Gerente(), dataBento);
 		
 		// Criar as listas necessárias para os testes
-		ArrayList<Funcionario> lista_Completa = new ArrayList<Funcionario>();
-		ArrayList<Funcionario> lista_Beneficios = new ArrayList<Funcionario>();
-		ArrayList<Funcionario> lista_Vendedores = new ArrayList<Funcionario>();
+		ArrayList<Funcionario> listaCompleta = new ArrayList<Funcionario>();
+		ArrayList<Funcionario> listaBeneficios = new ArrayList<Funcionario>();
+		ArrayList<Funcionario> listaVendedores = new ArrayList<Funcionario>();
 		
-		lista_Completa.add(jorgeCarvalho);
-		lista_Completa.add(mariaSouza);
-		lista_Completa.add(anaSilva);
-		lista_Completa.add(joaoMendes);
-		lista_Completa.add(julianaAlves);
-		lista_Completa.add(bentoAlbino);
+		listaCompleta.add(jorgeCarvalho);
+		listaCompleta.add(mariaSouza);
+		listaCompleta.add(anaSilva);
+		listaCompleta.add(joaoMendes);
+		listaCompleta.add(julianaAlves);
+		listaCompleta.add(bentoAlbino);
 		
-		lista_Beneficios.add(jorgeCarvalho);
-		lista_Beneficios.add(mariaSouza);
-		lista_Beneficios.add(anaSilva);
-		lista_Beneficios.add(joaoMendes);
+		listaBeneficios.add(jorgeCarvalho);
+		listaBeneficios.add(mariaSouza);
+		listaBeneficios.add(anaSilva);
+		listaBeneficios.add(joaoMendes);
 		
-		lista_Vendedores.add(anaSilva);
-		lista_Vendedores.add(joaoMendes);
+		listaVendedores.add(anaSilva);
+		listaVendedores.add(joaoMendes);
+
+        // Criar datas venda
+        Calendar data1 = Calendar.getInstance();
+        data1.set(Calendar.DAY_OF_MONTH, 1);
+        data1.set(Calendar.MONTH, Calendar.DECEMBER);
+        data1.set(Calendar.YEAR, 2021);
+
+        Calendar data2 = Calendar.getInstance();
+        data2.set(Calendar.DAY_OF_MONTH, 1);
+        data2.set(Calendar.MONTH, Calendar.JANUARY);
+        data2.set(Calendar.YEAR, 2022);
+
+        Calendar data3 = Calendar.getInstance();
+        data3.set(Calendar.DAY_OF_MONTH, 1);
+        data3.set(Calendar.MONTH, Calendar.FEBRUARY);
+        data3.set(Calendar.YEAR, 2022);
+
+        Calendar data4 = Calendar.getInstance();
+        data4.set(Calendar.DAY_OF_MONTH, 1);
+        data4.set(Calendar.MONTH, Calendar.MARCH);
+        data4.set(Calendar.YEAR, 2022);
+
+        Calendar data5 = Calendar.getInstance();
+        data5.set(Calendar.DAY_OF_MONTH, 1);
+        data5.set(Calendar.MONTH, Calendar.APRIL);
+        data5.set(Calendar.YEAR, 2022);
+
+        // Criar Vendas
+        Venda vendaAna1 = new Venda(5200, data1);
+        Venda vendaAna2 = new Venda(4000, data2);
+        Venda vendaAna3 = new Venda(4200, data3);
+        Venda vendaAna4 = new Venda(5850, data4);
+        Venda vendaAna5 = new Venda(7000, data5);
+
+        Venda vendaJoao1 = new Venda(3400, data1);
+        Venda vendaJoao2 = new Venda(7700, data2);
+        Venda vendaJoao3 = new Venda(5000, data3);
+        Venda vendaJoao4 = new Venda(5900, data4);
+        Venda vendaJoao5 = new Venda(6500, data5);
+
+        // Realizar vendas
+        Vendedor ana = (Vendedor) anaSilva.getCargo();
+        Vendedor joao = (Vendedor) joaoMendes.getCargo();
+
+        ana.realizarVenda(vendaAna1);
+        ana.realizarVenda(vendaAna2);
+        ana.realizarVenda(vendaAna3);
+        ana.realizarVenda(vendaAna4);
+        ana.realizarVenda(vendaAna5);
+
+        joao.realizarVenda(vendaJoao1);
+        joao.realizarVenda(vendaJoao2);
+        joao.realizarVenda(vendaJoao3);
+        joao.realizarVenda(vendaJoao4);
+        joao.realizarVenda(vendaJoao5);
 		
 		Scanner input = new Scanner(System.in);
 		
@@ -263,7 +325,7 @@ public class Main {
                     int ano = input.nextInt();
                     input.nextLine();
 
-                    double valorTotal = totalPago(lista_Completa,mes,ano);
+                    double valorTotal = totalPago(listaCompleta, mes, ano);
                     System.out.printf("O valor da soma de todos os salarios na data %d/%d é: R$ %.2f \n", mes, ano, valorTotal);
 
                     break;
@@ -277,7 +339,7 @@ public class Main {
                     ano = input.nextInt();
                     input.nextLine();
 
-                    double valorSemBeneficios = totalPagoSemBeneficio(lista_Completa,mes,ano);
+                    double valorSemBeneficios = totalPagoSemBeneficio(listaCompleta, mes, ano);
                     System.out.printf("O valor da soma de todos os salarios sem os bonus na data %d/%d é: R$ %.2f \n ", mes, ano, valorSemBeneficios);
 
                     break;
@@ -291,7 +353,7 @@ public class Main {
                     ano = input.nextInt();
                     input.nextLine();
 
-                    double valorBeneficios = totalPagoEmBeneficio(lista_Beneficios,mes,ano);
+                    double valorBeneficios = totalPagoEmBeneficio(listaBeneficios,mes,ano);
                     System.out.printf("O valor da soma dos bonus na data %d/%d é: R$ %.2f \n ", mes, ano, valorBeneficios);
 
                     break;
@@ -305,7 +367,7 @@ public class Main {
                     ano = input.nextInt();
                     input.nextLine();
 
-                    Funcionario ganhaMais = funcionarioRecebeuMais(lista_Completa,mes,ano);
+                    Funcionario ganhaMais = funcionarioRecebeuMais(listaCompleta, mes, ano);
                     System.out.printf("Na data %d/%d quem mais recebeu foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, ganhaMais.getNome(), ganhaMais.getSalarioMesEspecifico(mes, ano));
 
                     break;
@@ -319,7 +381,7 @@ public class Main {
                     ano = input.nextInt();
                     input.nextLine();
 
-                    Funcionario maisBeneficio = funcionarioRecebeuMaisBeneficio(lista_Beneficios,mes,ano);
+                    Funcionario maisBeneficio = funcionarioRecebeuMaisBeneficio(listaBeneficios, mes, ano);
                     System.out.printf("Na data %d/%d quem recebeu o maior bonus foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, maisBeneficio.getNome(), maisBeneficio.getSalarioMesEspecifico(mes, ano) - maisBeneficio.getSalarioSemBeneficio());
 
                     break;
@@ -333,11 +395,11 @@ public class Main {
                     ano = input.nextInt();
                     input.nextLine();
 
-                    Funcionario maisVendeu = vendedorMaiorVenda(lista_Vendedores, mes, ano);
+                    Funcionario maisVendeu = vendedorMaiorVenda(listaVendedores, mes, ano);
                     Vendedor cargo = (Vendedor) maisVendeu.getCargo();
 
                     double valorVendido = cargo.getValorVendidoMes(mes, ano);
-                    System.out.printf("Na data %d/%d quem mais vendeu foi o(a) %s o valor foi: R$ %.2f \n", mes, ano, maisVendeu.getNome(), valorVendido);
+                    System.out.printf("Na data %d/%d quem mais vendeu foi o(a) %s. O valor vendido foi: R$ %.2f \n", mes, ano, maisVendeu.getNome(), valorVendido);
 
                     break;
                 default:

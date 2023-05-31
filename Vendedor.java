@@ -39,10 +39,13 @@ public class Vendedor extends Cargo {
     public double getValorVendidoMes(int mes, int ano) {
         double valor = 0;
 
+        System.out.println(vendas.size() + " iuhiah");
+
         for(Venda venda : vendas) {
             Calendar dataVenda = venda.getData();
 
             Calendar dataProcurada = Calendar.getInstance();
+            dataProcurada.set(Calendar.DAY_OF_MONTH, 1);
             dataProcurada.set(Calendar.YEAR, ano);
             Main.setMes(dataProcurada, mes);
 
