@@ -58,4 +58,8 @@ public class Vendedor extends Cargo {
         vendas.add(venda);
         valorVendido += venda.getValor();
     }
+
+    public void updateBeneficio() {
+        this.beneficio = BENEFICIO; // Caso mude
+    }
 }

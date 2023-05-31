@@ -13,4 +13,6 @@ public abstract class Cargo {
     public abstract double getBonusAnosServico();
 
     public abstract double getBeneficio();
+
+    public abstract void updateBeneficio();
 }

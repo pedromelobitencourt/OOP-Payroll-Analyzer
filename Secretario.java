@@ -22,4 +22,8 @@ public class Secretario extends Cargo {
     public double getBeneficio() {
         return BENEFICIO;
     }
+
+    public void updateBeneficio() {
+        this.beneficio = BENEFICIO; // Caso mude
+    }
 }

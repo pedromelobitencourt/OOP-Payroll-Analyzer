@@ -22,4 +22,8 @@ public class Gerente extends Cargo {
     public void updateSalario() {
         this.salario = SALARIO; // Caso mude
     }
+
+    public void updateBeneficio() {
+        this.beneficio = BENEFICIO; // Caso mude
+    }
 }
