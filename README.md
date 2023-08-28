@@ -1,3 +1,5 @@
+# OOP-Payroll-Analyzer
+
 ## Project: Payment and Sales Calculations - Object-Oriented Approach in Java
 
 This Java project utilizes Object-Oriented concepts to perform calculations related to employee payments and sales of salespersons. It provides methods that allow you to calculate total values for salaries, benefits, and sales based on the provided information. Below, you'll find details about the project's functionalities and how to use it:
